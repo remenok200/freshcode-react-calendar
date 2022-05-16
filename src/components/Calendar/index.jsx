@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import styles from "./Calendar.module.css";
+import styles from "./Calendar.module.scss";
 import {
   format,
   getDay,
