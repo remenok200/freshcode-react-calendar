@@ -19,6 +19,7 @@ import {
   getWeeksInMonth,
   eachDayOfInterval,
   getWeekOfMonth,
+  isSameMonth,
 } from "date-fns";
 
 class Calendar extends Component {
@@ -51,7 +52,7 @@ class Calendar extends Component {
       const weekDates = [];
       for(let j = 0; j < 7; j++) {
         const tempChangeDate = tempDateCurrentWeek;
-        weekDates.push(<td onClick={() => this.changeDate(tempChangeDate)} key={j}>{Number(format(tempDateCurrentWeek, "d"))}</td>);
+        weekDates.push(<td onClick={isSameMonth(currentDate, tempChangeDate) === true ? () => this.changeDate(tempChangeDate) : null} key={j}>{Number(format(tempDateCurrentWeek, "d"))}</td>);
         tempDateCurrentWeek = new Date(addDays(tempDateCurrentWeek, 1));
       }
       monthDates.push(<tr key={i}>{weekDates}</tr>);
