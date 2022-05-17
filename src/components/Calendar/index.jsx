@@ -50,7 +50,8 @@ class Calendar extends Component {
     for (let i = 1; i < getWeeksInMonth(currentDate, { weekStartsOn: 1 }); i++) {
       const weekDates = [];
       for(let j = 0; j < 7; j++) {
-        weekDates.push(<td key={j}>{Number(format(tempDateCurrentWeek, "d"))}</td>);
+        const tempChangeDate = tempDateCurrentWeek;
+        weekDates.push(<td onClick={() => this.changeDate(tempChangeDate)} key={j}>{Number(format(tempDateCurrentWeek, "d"))}</td>);
         tempDateCurrentWeek = new Date(addDays(tempDateCurrentWeek, 1));
       }
       monthDates.push(<tr key={i}>{weekDates}</tr>);
