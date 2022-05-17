@@ -103,22 +103,35 @@ class Calendar extends Component {
     const { currentDate } = this.state;
     return (
       <>
-        <p>{format(currentDate, "EEEE d").toUpperCase()}</p>
+        <div className={styles.mainWrapper}>
+          <div className={styles.leftBlock}>
+            <p className={styles.weekDay}>
+              {format(currentDate, "EEEE").toUpperCase()}
+            </p>
+            <p className={styles.weekDayNumber}>{format(currentDate, "d")}</p>
+          </div>
 
-        <button className={styles.controlButtons} onClick={this.subMonth}>
-          ←
-        </button>
-        <button className={styles.controlButtons} onClick={this.addMonth}>
-          →
-        </button>
+          <div className={styles.backgroundColorGray}>
+            <div className={styles.wrapper}>
+              <button className={styles.controlButtons} onClick={this.subMonth}>
+                ←
+              </button>
+              <button className={styles.controlButtons} onClick={this.addMonth}>
+                →
+              </button>
+            </div>
 
-        <table>
-          <caption className={styles.currentMonth}>
-            {format(currentDate, "LLLL Y").toUpperCase()}
-          </caption>
-          <thead>{this.createLetters()}</thead>
-          <tbody>{this.fillDates()}</tbody>
-        </table>
+            <div className={styles.wrapper}>
+              <table>
+                <caption className={styles.currentMonth}>
+                  {format(currentDate, "LLLL Y").toUpperCase()}
+                </caption>
+                <thead>{this.createLetters()}</thead>
+                <tbody>{this.fillDates()}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
