@@ -42,6 +42,20 @@ class Calendar extends Component {
     });
   };
 
+  createLetters = () => {
+    const letters = [];
+
+    letters.push(
+      new Array(7).fill(null).map((item, index) => (
+        <th className={styles.weekLetters} key={index}>
+          {format(addDays(startOfWeek(this.state.currentDate), index), "EEEEE")}
+        </th>
+      ))
+    );
+
+    return <tr>{letters}</tr>;
+  };
+
   fillDates = () => {
     const { currentDate, selectedDate } = this.state;
     let tempDateCurrentWeek = new Date(startOfWeek(startOfMonth(currentDate)));
@@ -90,20 +104,19 @@ class Calendar extends Component {
     return (
       <>
         <p>{format(currentDate, "EEEE d").toUpperCase()}</p>
-        <button onClick={this.subMonth}>sub month</button>
-        <button onClick={this.addMonth}>add month</button>
-        <p>{format(currentDate, "LLLL Y").toUpperCase()}</p>
+
+        <button className={styles.controlButtons} onClick={this.subMonth}>
+          ←
+        </button>
+        <button className={styles.controlButtons} onClick={this.addMonth}>
+          →
+        </button>
 
         <table>
-          <thead>
-            <tr>
-              {new Array(7).fill(null).map((item, index) => (
-                <th key={index}>
-                  {format(addDays(startOfWeek(currentDate), index), "EEEEE")}
-                </th>
-              ))}
-            </tr>
-          </thead>
+          <caption className={styles.currentMonth}>
+            {format(currentDate, "LLLL Y").toUpperCase()}
+          </caption>
+          <thead>{this.createLetters()}</thead>
           <tbody>{this.fillDates()}</tbody>
         </table>
       </>
