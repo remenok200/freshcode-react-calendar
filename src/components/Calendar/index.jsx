@@ -20,10 +20,16 @@ class Calendar extends Component {
   };
 
   addMonth = () => {
-    this.setState({ currentDate: addMonths(this.state.currentDate, 1) });
+    this.setState({
+      currentDate: addMonths(this.state.currentDate, 1),
+      selectedDate: new Date(this.state.currentDate),
+    });
   };
   subMonth = () => {
-    this.setState({ currentDate: subMonths(this.state.currentDate, 1) });
+    this.setState({
+      currentDate: subMonths(this.state.currentDate, 1),
+      selectedDate: new Date(this.state.currentDate),
+    });
   };
   changeDate = (date) => {
     this.setState({
@@ -38,7 +44,7 @@ class Calendar extends Component {
     const monthDates = [];
 
     for (
-      let i = 1;
+      let i = 0;
       i < getWeeksInMonth(currentDate, { weekStartsOn: 1 });
       i++
     ) {
@@ -53,6 +59,10 @@ class Calendar extends Component {
                 : null
             }
             className={classNames(styles.day, {
+              [styles.dayNotOfThisMonth]:
+                isSameMonth(tempDateCurrentWeek, currentDate) === false
+                  ? true
+                  : false,
               [styles.selectedDay]: isSameDay(
                 tempDateCurrentWeek,
                 selectedDate
