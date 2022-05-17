@@ -21,14 +21,18 @@ class Calendar extends Component {
 
   addMonth = () => {
     this.setState({
-      currentDate: addMonths(this.state.currentDate, 1),
-      selectedDate: new Date(this.state.currentDate),
+      currentDate: new Date(startOfMonth(addMonths(this.state.currentDate, 1))),
+      selectedDate: new Date(
+        startOfMonth(addMonths(this.state.currentDate, 1))
+      ),
     });
   };
   subMonth = () => {
     this.setState({
-      currentDate: subMonths(this.state.currentDate, 1),
-      selectedDate: new Date(this.state.currentDate),
+      currentDate: new Date(startOfMonth(subMonths(this.state.currentDate, 1))),
+      selectedDate: new Date(
+        startOfMonth(subMonths(this.state.currentDate, 1))
+      ),
     });
   };
   changeDate = (date) => {
