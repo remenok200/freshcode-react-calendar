@@ -73,6 +73,7 @@ class DatesTable extends Component {
 
     return monthDates;
   };
+  
   render() {
     return (
       <div className={styles.wrapper}>

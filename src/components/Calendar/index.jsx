@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./Calendar.module.scss";
 import ControlButtons from "./ControlButtons";
 import DatesTable from "./DatesTable";
-import { format } from "date-fns";
+import WeekDay from "./WeekDay";
 
 class Calendar extends Component {
   state = {
@@ -23,12 +23,7 @@ class Calendar extends Component {
     return (
       <>
         <div className={styles.mainWrapper}>
-          <div className={styles.leftBlock}>
-            <p className={styles.weekDay}>
-              {format(currentDate, "EEEE").toUpperCase()}
-            </p>
-            <p className={styles.weekDayNumber}>{format(currentDate, "d")}</p>
-          </div>
+          <WeekDay currentDate={currentDate} />
 
           <div className={styles.backgroundColorGray}>
             <ControlButtons
