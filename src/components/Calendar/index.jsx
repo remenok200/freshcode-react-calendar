@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Calendar.module.scss";
-import ControlButtons from "./ControlButtons";
-import DatesTable from "./DatesTable";
+import Month from "./Month";
 import WeekDay from "./WeekDay";
 
 class Calendar extends Component {
@@ -25,20 +24,12 @@ class Calendar extends Component {
         <div className={styles.mainWrapper}>
           <WeekDay currentDate={currentDate} />
 
-          <div className={styles.backgroundColorGray}>
-            <ControlButtons
-              currentDate={currentDate}
-              selectedDate={selectedDate}
-              updateCurrentDate={this.updateCurrentDate}
-              updateSelectedDate={this.updateSelectedDate}
-            />
-            <DatesTable
-              currentDate={currentDate}
-              selectedDate={selectedDate}
-              updateCurrentDate={this.updateCurrentDate}
-              updateSelectedDate={this.updateSelectedDate}
-            />
-          </div>
+          <Month
+            currentDate={currentDate}
+            selectedDate={selectedDate}
+            updateCurrentDate={this.updateCurrentDate}
+            updateSelectedDate={this.updateSelectedDate}
+          />
         </div>
       </>
     );
