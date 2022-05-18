@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import classNames from "classnames";
 import styles from "./Calendar.module.scss";
+import ControlButtons from "./ControlButtons";
 import {
   format,
   addDays,
-  addMonths,
-  subMonths,
   startOfWeek,
   startOfMonth,
   isSameDay,
@@ -19,22 +18,14 @@ class Calendar extends Component {
     selectedDate: new Date(),
   };
 
-  addMonth = () => {
-    this.setState({
-      currentDate: new Date(startOfMonth(addMonths(this.state.currentDate, 1))),
-      selectedDate: new Date(
-        startOfMonth(addMonths(this.state.currentDate, 1))
-      ),
-    });
-  };
-  subMonth = () => {
-    this.setState({
-      currentDate: new Date(startOfMonth(subMonths(this.state.currentDate, 1))),
-      selectedDate: new Date(
-        startOfMonth(subMonths(this.state.currentDate, 1))
-      ),
-    });
-  };
+  updateCurrentDate = ({currentDate}) => {
+    this.setState({currentDate})
+  }
+
+  updateSelectedDate = ({selectedDate}) => {
+    this.setState({selectedDate})
+  }
+  
   changeDate = (date) => {
     this.setState({
       currentDate: new Date(date),
@@ -100,7 +91,7 @@ class Calendar extends Component {
   };
 
   render() {
-    const { currentDate } = this.state;
+    const { currentDate, selectedDate } = this.state;
     return (
       <>
         <div className={styles.mainWrapper}>
@@ -112,14 +103,7 @@ class Calendar extends Component {
           </div>
 
           <div className={styles.backgroundColorGray}>
-            <div className={styles.wrapper}>
-              <button className={styles.controlButtons} onClick={this.subMonth}>
-                ←
-              </button>
-              <button className={styles.controlButtons} onClick={this.addMonth}>
-                →
-              </button>
-            </div>
+            <ControlButtons currentDate={currentDate} selectedDate={selectedDate} updateCurrentDate={this.updateCurrentDate} updateSelectedDate={this.updateSelectedDate} />
 
             <div className={styles.wrapper}>
               <table>
